@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# Actualizar cuando esté en producción:
+Sitemap: https://tu-dominio-futuro.com/sitemap-index.xml

@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontWeight: {
+        extrabold: '800',
+        black: '900',
+      },
     },
   },
   plugins: [],
