@@ -4,7 +4,7 @@ import Image from 'next/image';
 async function getFishBySlug(slug: string) {
   try {
     const response = await fetch(
-      `http://127.0.0.1:1337/api/fishes?filters[slug][$eq]=${slug}&populate=*`,
+      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/fishes?filters[slug][$eq]=${slug}&populate=*`,
       {
         method: 'GET',
         headers: {
@@ -64,7 +64,7 @@ export default async function PecesDetailPage({
           <div className="md:flex-shrink-0 relative h-96 md:w-96 flex items-center justify-center">
             {fish.image?.url ? (
               <Image
-                src={new URL(fish.image.url, 'http://localhost:1337').toString()}
+                src={new URL(fish.image.url, process.env.NEXT_PUBLIC_STRAPI_API_URL).toString()}
                 alt={fish.image.alternativeText || fish.name}
                 fill
                 className="object-contain p-4 rounded-2xl"

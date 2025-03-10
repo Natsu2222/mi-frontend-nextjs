@@ -3,16 +3,16 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '1337',
+        protocol: 'https',
+        hostname: 'mi-backend-strapi-1.onrender.com',
         pathname: '/uploads/**',
       },
     ],
-    domains: ['localhost'],
+    domains: ['mi-backend-strapi-1.onrender.com'],
     unoptimized: true,
   },
   reactStrictMode: true,
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
+

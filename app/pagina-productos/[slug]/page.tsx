@@ -37,7 +37,7 @@ export default async function ProductDetailPage({
                 {product.image?.url && (
                   <div className="relative aspect-square w-full">
                     <Image
-                      src={`http://localhost:1337${product.image.url}`}
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${product.image.url}`}
                       alt={product.image.alternativeText || product.name}
                       fill
                       className="object-contain p-4"

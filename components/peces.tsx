@@ -30,7 +30,7 @@ export interface FishResponse {
 
 export async function getFish(): Promise<FishResponse | null> {
   try {
-    const response = await fetch('http://127.0.0.1:1337/api/fishes?populate=*', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/fishes?populate=*`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export default function PecesCard({ fish }: PecesProps) {
         <div className="relative h-48">
           {fish.image?.url ? (
             <Image
-              src={`http://localhost:1337${fish.image.url}`}
+              src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${fish.image.url}`}
               alt={fish.image.alternativeText || fish.name}
               fill
               className="object-cover"

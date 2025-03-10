@@ -46,7 +46,7 @@ interface StrapiResponse {
 export default async function Home() {
   const getProductCategories = async (): Promise<StrapiResponse | null> => {
     try {
-      const url = 'http://127.0.0.1:1337/api/product-categories?populate=*';
+      const url = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/product-categories?populate=*`;
       console.log('Intentando conectar a:', url);
 
       const response = await fetch(url, { 
@@ -98,7 +98,7 @@ export default async function Home() {
                 {category.image && (
                   <div className="flex justify-center -mb-16 relative z-10">
                     <Image
-                      src={`http://localhost:1337${category.image.url}`}
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.image.url}`}
                       alt={category.image.alternativeText || category.title}
                       width={200}
                       height={200}

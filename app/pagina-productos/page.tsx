@@ -31,7 +31,7 @@ interface ProductResponse {
 
 export async function getProducts(): Promise<ProductResponse | null> {
   try {
-    const response = await fetch('http://127.0.0.1:1337/api/products?populate=*', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/products?populate=*`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export default async function PaginaProductos() {
                 <div className="relative h-48">
                   {product.image?.url ? (
                     <Image
-                      src={`http://localhost:1337${product.image.url}`}
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${product.image.url}`}
                       alt={product.image.alternativeText || product.name}
                       fill
                       className="object-cover rounded-t-xl"

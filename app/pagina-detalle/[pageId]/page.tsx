@@ -70,12 +70,12 @@ export default async function BannerDetailPage({ params }: PageProps) {
                 className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105"
               >
                 {acuario.image && (
-                  <div className="relative h-64">
+                  <div className="relative h-64 flex items-center justify-center">
                     <Image
                       src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${acuario.image.url}`}
                       alt={acuario.image.alternativeText || acuario.name}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 )}
