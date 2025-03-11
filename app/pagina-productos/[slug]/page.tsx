@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getProducts } from "../page";
+import { getProducts } from '../../lib/api';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
@@ -22,7 +22,7 @@ async function getProductBySlug(slug: string) {
   try {
     const productsData = await getProducts();
     if (!productsData || !productsData.data) return null;
-    return productsData.data.find((p) => p.slug === slug);
+    return productsData.data.find((p: { slug: string }) => p.slug === slug);
   } catch (error) {
     console.error('Error fetching product:', error);
     return null;

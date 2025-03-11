@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import PaginaPeces from '../pagina-Peces/page';
 import Link from 'next/link';
+import { getProducts } from '../lib/api';
 
 interface Product {
   id: number;
@@ -27,27 +28,6 @@ interface ProductResponse {
       total: number;
     };
   };
-}
-
-export async function getProducts(): Promise<ProductResponse | null> {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/products?populate=*`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    return null;
-  }
 }
 
 export default async function PaginaProductos() {
