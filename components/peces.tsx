@@ -28,6 +28,22 @@ export interface FishResponse {
   };
 }
 
+// Añade esta interfaz para los datos crudos de la API
+interface RawFishData {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  slug: string;
+  image: {
+    url: string;
+    alternativeText?: string;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
 export async function getFish(): Promise<FishResponse | null> {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/fishes?populate=*`, {
@@ -43,18 +59,15 @@ export async function getFish(): Promise<FishResponse | null> {
     }
 
     const data = await response.json();
-    // Transformar los datos para que coincidan con la interfaz Fish
+    // Transformar los datos usando la interfaz RawFishData
     const transformedData = {
-      data: data.data.map((fish: any) => ({
+      data: data.data.map((fish: RawFishData) => ({
         id: fish.id,
         name: fish.name,
         description: fish.description,
         price: fish.price,
         slug: fish.slug,
-        image: fish.image ? {
-          url: fish.image.url,
-          alternativeText: fish.image.alternativeText
-        } : null,
+        image: fish.image,
         createdAt: fish.createdAt,
         updatedAt: fish.updatedAt,
         publishedAt: fish.publishedAt
