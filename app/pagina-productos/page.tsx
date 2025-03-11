@@ -3,33 +3,6 @@ import PaginaPeces from '../pagina-Peces/page';
 import Link from 'next/link';
 import { getProducts } from '../lib/api';
 
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  slug: string;
-  image: {
-    url: string;
-    alternativeText?: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
-
-interface ProductResponse {
-  data: Product[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
-}
-
 export default async function PaginaProductos() {
   const productsData = await getProducts();
 
