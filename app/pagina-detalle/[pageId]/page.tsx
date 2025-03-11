@@ -6,9 +6,13 @@ interface PageProps {
   params: {
     pageId: string;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function BannerDetailPage({ params }: PageProps) {
+export default async function BannerDetailPage({ 
+  params,
+  searchParams 
+}: PageProps) {
   const banners = await getBanners();
   const banner = banners?.data.find((b) => b.id === parseInt(params.pageId));
 
