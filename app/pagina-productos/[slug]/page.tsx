@@ -2,6 +2,21 @@ import Image from 'next/image';
 import { getProducts } from "../page";
 import { notFound } from 'next/navigation';
 
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+// Función auxiliar para obtener el slug
+async function getSlug(params: Promise<{ slug: string }>) {
+  const resolvedParams = await params;
+  if (!resolvedParams.slug) {
+    throw new Error('Slug inválido');
+  }
+  return resolvedParams.slug;
+}
+
 // Función auxiliar para buscar el producto
 async function getProductBySlug(slug: string) {
   try {
@@ -14,15 +29,24 @@ async function getProductBySlug(slug: string) {
   }
 }
 
+export async function generateMetadata({ params }: PageProps) {
+  const slug = await getSlug(params);
+  const product = await getProductBySlug(slug);
+  return {
+    title: product ? product.name : 'Producto no encontrado',
+  };
+}
+
 export default async function ProductDetailPage({
   params,
-}: {
-  params: { slug: string };
-}) {
+}: PageProps) {
   try {
-    // Esperamos a que los params estén disponibles
-    const slug = await params.slug;
-    const product = await getProductBySlug(slug);
+    const [slug, productsData] = await Promise.all([
+      getSlug(params),
+      getProducts()
+    ]);
+    
+    const product = productsData?.data?.find((p) => p.slug === slug);
     
     if (!product) {
       notFound();

@@ -3,18 +3,37 @@ import { getBanners } from "@/components/baner";
 import Link from "next/link";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     pageId: string;
+  }>;
+}
+
+// Función para validar y obtener el pageId
+async function getPageId(params: Promise<{ pageId: string }>) {
+  const resolvedParams = await params;
+  const pageId = Number(resolvedParams.pageId);
+  if (isNaN(pageId)) {
+    throw new Error('ID inválido');
+  }
+  return pageId;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const pageId = await getPageId(params);
+  return {
+    title: `Banner ${pageId}`,
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export default async function BannerDetailPage({ 
-  params,
-  searchParams 
+  params 
 }: PageProps) {
-  const banners = await getBanners();
-  const banner = banners?.data.find((b) => b.id === parseInt(params.pageId));
+  const [banners, pageId] = await Promise.all([
+    getBanners(),
+    getPageId(params)
+  ]);
+
+  const banner = banners?.data.find((b) => b.id === pageId);
 
   if (!banner) {
     return (
