@@ -70,7 +70,7 @@ interface BannerResponse {
 
 export async function getBanners(): Promise<BannerResponse | null> {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://127.0.0.1:1337';
+    const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
     const response = await fetch(`${apiUrl}/api/baners?populate[image]=true&populate[acuarios][populate][image]=true`, {
       method: 'GET',
       headers: {

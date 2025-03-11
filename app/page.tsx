@@ -1,5 +1,5 @@
 import Image from "next/image";
-import BannerSection from '@/components/baner';
+import BannerSection from '../components/banner';
 
 // Definimos la interfaz para el tipo de producto
 

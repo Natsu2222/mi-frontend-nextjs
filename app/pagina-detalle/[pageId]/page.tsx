@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getBanners } from "@/components/baner";
+import { getBanners } from "@/components/banner";
 import Link from "next/link";
 
 interface PageProps {
