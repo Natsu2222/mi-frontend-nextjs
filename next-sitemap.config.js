@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: process.env.SITE_URL || 'http://localhost:3000',
+    siteUrl: process.env.SITE_URL || 'https://shrimpstore.vercel.app',
     generateRobotsTxt: true,
     exclude: ['/server-sitemap.xml'],
     robotsTxtOptions: {
@@ -15,7 +15,7 @@ module.exports = {
             },
         ],
         additionalSitemaps: [
-            'http://localhost:3000/server-sitemap.xml'
+            'https://shrimpstore.vercel.app/sitemap.xml'
         ]
     },
     changefreq: 'daily',
