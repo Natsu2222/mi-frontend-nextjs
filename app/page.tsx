@@ -83,7 +83,7 @@ export default async function Home() {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-2xl font-bold mb-8">Categorías de Gambas</h1>
+      <h1 className="text-2xl font-bold mb-8">Categorías de Gambas.</h1>
       
       {!result ? (
         <p>Error al cargar los datos</p>
