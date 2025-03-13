@@ -118,7 +118,7 @@ export default async function BannerSection() {
                 {banner.image && (
                   <div className="relative w-full h-full">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${banner.image.url}`}
+                      src={banner.image.url}
                       alt={banner.image.alternativeText || banner.title}
                       fill
                       className="object-cover"
