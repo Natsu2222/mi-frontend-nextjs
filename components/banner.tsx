@@ -77,7 +77,6 @@ export async function getBanners(): Promise<BannerResponse | null> {
         'Content-Type': 'application/json',
       },
       next: { revalidate: 60 },
-      cache: 'no-store'
     });
 
     if (!response.ok) {
