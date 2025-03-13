@@ -94,7 +94,7 @@ export default function PecesCard({ fish }: PecesProps) {
         <div className="relative h-48">
           {fish.image?.url ? (
             <Image
-              src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${fish.image.url}`}
+              src={fish.image.url}
               alt={fish.image.alternativeText || fish.name}
               fill
               className="object-cover"
