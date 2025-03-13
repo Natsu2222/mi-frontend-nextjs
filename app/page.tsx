@@ -98,7 +98,7 @@ export default async function Home() {
                 {category.image && (
                   <div className="flex justify-center -mb-16 relative z-10">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.image.url}`}
+                      src={category.image.url}
                       alt={category.image.alternativeText || category.title}
                       width={200}
                       height={200}

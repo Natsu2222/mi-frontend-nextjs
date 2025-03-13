@@ -25,7 +25,7 @@ export default async function PaginaProductos() {
                 <div className="relative h-48">
                   {product.image?.url ? (
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${product.image.url}`}
+                      src={product.image.url}
                       alt={product.image.alternativeText || product.name}
                       fill
                       className="object-cover rounded-t-xl"

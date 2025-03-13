@@ -24,7 +24,9 @@ async function getFishBySlug(slug: string) {
         headers: {
           'Content-Type': 'application/json',
         },
-        cache: 'no-store'
+        next: {
+          revalidate: 120 // Revalidar cada 2 minutos
+        }
       }
     );
 

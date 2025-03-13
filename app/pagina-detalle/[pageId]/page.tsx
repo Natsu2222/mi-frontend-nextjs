@@ -55,7 +55,7 @@ export default async function BannerDetailPage({
         {banner.image && (
           <>
             <Image
-              src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${banner.image.url}`}
+              src={banner.image.url}
               alt={banner.image.alternativeText || banner.title}
               fill
               className="object-cover"
@@ -95,7 +95,7 @@ export default async function BannerDetailPage({
                 {acuario.image && (
                   <div className="relative h-64 flex items-center justify-center">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${acuario.image.url}`}
+                      src={acuario.image.url}
                       alt={acuario.image.alternativeText || acuario.name}
                       fill
                       className="object-contain"
