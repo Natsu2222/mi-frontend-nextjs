@@ -20,7 +20,17 @@ async function getSlug(params: Promise<{ slug: string }>) {
 // Función auxiliar para buscar el producto
 async function getProductBySlug(slug: string) {
   try {
-    const productsData = await getProducts();
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/products?populate=*`, {
+      next: {
+        revalidate: 120 // Revalidar cada 2 minutos
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const productsData = await response.json();
     if (!productsData || !productsData.data) return null;
     return productsData.data.find((p: { slug: string }) => p.slug === slug);
   } catch (error) {

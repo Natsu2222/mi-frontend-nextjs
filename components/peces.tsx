@@ -51,7 +51,9 @@ export async function getFish(): Promise<FishResponse | null> {
       headers: {
         'Content-Type': 'application/json',
       },
-      cache: 'no-store'
+      next: {
+        revalidate: 120 // Revalidar cada 2 minutos
+      }
     });
 
     if (!response.ok) {
