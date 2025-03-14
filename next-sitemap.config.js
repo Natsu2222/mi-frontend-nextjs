@@ -15,7 +15,7 @@ module.exports = {
             },
         ],
         additionalSitemaps: [
-            'https://shrimpstore.vercel.app/sitemap.xml'
+            'https://shrimpstore.vercel.app/sitemap-index.xml'
         ]
     },
     changefreq: 'daily',
